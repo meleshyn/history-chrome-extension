@@ -10,11 +10,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     chrome.history.search(
       { text: `"${getHostname(sender.tab.url)}"`, maxResults: 0 },
       (historyItems) => {
-        //   const totalVisitCount = historyItems?.reduce(
-        //     (total, item) => total + item.visitCount,
-        //     0
-        //   );
-        console.log(historyItems);
         const totalVisitCount = historyItems.length;
         chrome.action.setBadgeText({
           text: String(totalVisitCount),
