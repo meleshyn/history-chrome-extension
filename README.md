@@ -17,10 +17,6 @@
 
 To install this Chrome extension:
 
-## Installation
-
-To install this Chrome extension:
-
 1. Build the extension or download the ZIP file from the Releases section.
    - **Build from Source:** Run `npm run build` to generate the build directory.
    - **Download from Releases:** Download the ZIP file from the [Releases](https://github.com/meleshyn/history-chrome-extension/releases) section.
