@@ -13,7 +13,7 @@ domainName.onclick = function() {
     if (tabs.length > 0) {
       const currentTab = tabs[0];
 
-      openHistory(getTabName(currentTab));
+      openHistory(getHostname(currentTab.url));
     }
   });
 };
@@ -30,6 +30,9 @@ titleName.onclick = function(){
 
 }
 
+
+
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'setBadgeText') {
     chrome.history.search(
@@ -45,9 +48,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-chrome.action.onClicked.addListener((tab) => {
-  openHistory(getHostname(tab.url));
-});
+
+
 
 const openHistory = (query) => {
   chrome.tabs.create({ url: `chrome://history/?q="${query}"` });
@@ -61,3 +63,5 @@ const getHostname = (url) => {
 const getTabName = (tab) => {
   return tab.title;
 };
+
+
