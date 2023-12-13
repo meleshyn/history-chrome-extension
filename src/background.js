@@ -5,6 +5,31 @@
 // For more information on background script,
 // See https://developer.chrome.com/extensions/background_pages
 
+const domainName = document.getElementById("getDomain");
+
+domainName.onclick = function() {
+  // Use chrome.tabs.query to get information about the current tab
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    if (tabs.length > 0) {
+      const currentTab = tabs[0];
+
+      openHistory(getTabName(currentTab));
+    }
+  });
+};
+
+const titleName =document.getElementById("getTitle");
+titleName.onclick = function(){
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    if (tabs.length > 0) {
+      const currentTab = tabs[0];
+      
+      openHistory(getTabName(currentTab));
+    }
+  });
+
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'setBadgeText') {
     chrome.history.search(
@@ -31,4 +56,8 @@ const openHistory = (query) => {
 const getHostname = (url) => {
   const currentUrl = new URL(url);
   return currentUrl.hostname;
+};
+
+const getTabName = (tab) => {
+  return tab.title;
 };
